@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bloc de Notas</title>
+        <meta name="description" content="">
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=7">
+        <meta name="keywords" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/index.css?v=<?php echo(rand());>">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Hubballi&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/bloc.css?v=<?php echo(rand());>">
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <nav>
+            <span><h2><a href="index.html" id="nav-logo">Segundo Corte</a></h2></span>
+        </nav>
+
+        <div id="main-panel">
+            <h2>Bienvenido a la aplicacion de bloc de notas, 
+                presione en alguno de los botones para determinar que desea hacer
+            </h2>
+            <div id="button-row">
+                <button id="btnAbrir" class="file-button">Abrir archivo</button>
+                <button id="btnCrear" class="file-button">Crear archivo</button>
+            </div>
+        </div>
+        <script>
+            //Definimos los diferentes elementos HTML a usar cuando el botón Abrir sea pulsado
+            let btnAbrir = document.getElementById('btnAbrir')
+            let btnCrear = document.getElementById('btnCrear')
+            let panel = document.getElementById('main-panel')
+            let btnRow = document.createElement('button-row')
+            let frm = document.createElement('form')
+            let sumi = document.createElement('input')
+
+
+
+            btnAbrir.onclick = function() {
+
+                //Se crea el campo para insertar archivo .txt
+                let fileInput = document.createElement('input')
+
+                //Le damos atributos al formulario
+                frm.setAttribute('enctype','multipart/form-data')
+                frm.setAttribute('action','bloc_notas.php')
+                frm.setAttribute('method','POST')
+                frm.setAttribute('id','fileSubmitForm')
+                frm.appendChild(fileInput)
+                
+                //Atributos para el formulario de tipo file
+                fileInput.setAttribute('type','file')
+                fileInput.setAttribute('accept','.txt')
+                fileInput.setAttribute('name','archivo')
+                fileInput.setAttribute('id','archivo')
+                fileInput.setAttribute('required','true')
+                
+                //Atributos para el boton de enviar
+                sumi.setAttribute('type','submit')
+                sumi.setAttribute('value','Subir archivo para abrir')
+                frm.appendChild(sumi)
+
+                panel.appendChild(frm)
+               // btnOpen.setAttribute('class','btnEnviar')
+            //    btnOpen.innerHTML = 'Abrir archivo'
+              //  panel.append(btnOpen)
+            }
+           
+        </script>
+        <script>
+        async function enviarData(){
+                 $(document).ready(function(){
+                $('#fileSubmitForm').submit(function(ev){
+                    ev.preventDefault();
+                    let formData = new FormData()
+                    let file = $('$archivo').files[0]
+                    formData.append('archivo',file)
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost/segundo_corte/bloc_notas.php",
+                        data: formData,
+                        success: function(response){
+                            $('#button-row').remove()
+                            $('#fileSubmitForm').remove()
+                            
+
+                            let div = document.createElement('div')
+                            div.setAttribute('id','txtarea')
+                            
+                            
+                            let texti = document.createElement('textarea')
+                            texti.setAttribute('id','texti')
+                            texti.setAttribute('name','texti')
+                            texti.setAttribute('cols','50')
+                            texti.setAttribute('rows','20')
+
+                            $('#texti').appendTo('#txtarea')
+                            $('#txtarea').appendTo('#main-panel')
+                            
+
+                            let jsonData = JSON.parse(response)
+                            console.log(jsonData)
+                            texti.textContent = jsonData.content
+                            
+                        }
+                    })
+                })
+            })
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+                document.querySelector("form").addEventListener("submit", enviarData);
+            });
+        </script>
+    </body>
+</html>

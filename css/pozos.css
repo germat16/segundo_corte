@@ -1,0 +1,9 @@
+#main-panel {
+    width: 50%;
+    margin-top: 270px;
+    margin-left: auto;
+    margin-right:auto;
+    margin-bottom: 270px;
+    background-color: white;
+    padding:30px;
+}

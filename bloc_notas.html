@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>Bloc de Notas</title>
+        <meta name="description" content="">
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=7">
+        <meta name="keywords" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/index.css?v=<?php echo(rand());?>">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Hubballi&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/bloc.css?v=<?php echo(rand()); ?>">
+        
+    </head>
+    <body>
+        <nav>
+            <span><h2><a href="index.html" id="nav-logo">Segundo Corte</a></h2></span>
+        </nav>
+
+        <div id="main-panel">
+            <h2>Bloc de notas
+            </h2>
+        <br>
+        <br>
+        <div id="txtarea">
+            <textarea name="texti" id="texti" cols="50" rows="10">
+
+            </textarea>
+        </div>
+        </div>
+        <script>
+            fetch('bloc_notas.php').then((response) => {
+                response.text().then(txt => {
+                    var text = document.getElementById('texti')
+                    text.textContent = txt;
+                })
+            })
+
+            
+        </script>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+* {
+    margin:0px;
+    padding:0px;
+}
+nav {
+    background-color: blue;
+    padding: 50px;
+}
+
+#nav-logo {
+    color: white;
+    text-decoration: none;
+    font-family: 'Hubballi', cursive;
+}
+
+body {
+    background-color: rgba(7, 160, 248, 0.815);
+}
+
+
+#main_menu {
+    margin: 240px auto 240px auto;
+    padding: 30px;
+    background-color: white;
+    width: 50%;
+    border-radius: 10px;
+}
+
+#main_menu h3 {
+    text-align: center;
+}
+#btn-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+button {
+    width:100%;
+    background-color: rgb(62, 62, 211);
+    color: white;
+    margin-top:40px;
+    padding: 20px;
+}
+
+#footer {
+    background-color: black;
+    padding:60px;
+}
+
+.footer-text {
+    color: white;
+    text-align: center;
+    font-family: 'Hubballi',cursive;
+}

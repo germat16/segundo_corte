@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pozos Petroleros - Segundo Corte</title>
+        <meta name="description" content="">
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=7">
+        <meta name="keywords" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/index.css?v=?php echo(rand());">
+        <link rel="stylesheet" href="css/pozos.css?v=?php echo(rand());">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Hubballi&display=swap" rel="stylesheet">
+    
+        
+    </head>
+    <body>
+        <nav>
+            <span><h2><a href="index.html" id="nav-logo">Segundo Corte</a></h2></span>
+        </nav>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js" type="text/javascript"></script>
+        <div id="main-panel">
+            <h2>Graficos lineales sobre mediciones de manometros en pozos petroleros</h2>
+           
+            <canvas id="myChart"></canvas>
+        </div>
+        <script>
+            let datos = []
+            fetch("api/pozodara.php")
+            .then(response => {
+             response.json().then(json => {
+                 let con = json.mediciones
+                for(let i=0;i<con.length;i++){
+                    datos.push(con[i])
+                }
+                console.log(datos)
+               })
+              
+            }).catch(err => {
+                console.log(err)
+            })
+            let ctx = document.getElementById('myChart').getContext('2d')
+            let chart = new Chart(ctx,{
+                type: 'line',
+                data: {
+                    labels: ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'],
+                    datasets: [{
+                        label: 'Presion en el manometro #1 (Kilopascales)',
+                        backgroundColor: '#42a5f5',
+                        borderColor: 'gray',
+                        data: [4,7,8,4,13,10,10]
+                    }]
+                }
+            })
+            
+        </script>
+        
+        <div id="footer">
+            <p class="footer-text">2022 Germán Matheus, Derechos y Zurdos Reservados</p>
+        </div>
+
+        
+    </body>
+</html>

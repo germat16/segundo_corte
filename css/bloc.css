@@ -1,0 +1,23 @@
+#main-panel {
+    width: 50%;
+    margin-top: 270px;
+    margin-left: auto;
+    margin-right:auto;
+    background-color: white;
+    padding:30px;
+}
+
+#button-row {
+   display:flex;
+   column-gap: 5px;
+}
+
+.file-button {
+    width: 25%;
+    border-radius: 5px;
+   
+}
+input[type=submit]{
+    background-color: blue;
+    color: white;
+}

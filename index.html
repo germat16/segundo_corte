@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inicio - Segundo Corte</title>
+        <meta name="description" content="">
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=7">
+        <meta name="keywords" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/index.css?v=<?php echo(rand());>">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Hubballi&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <nav>
+            <span><h2><a href="index.html" id="nav-logo">Segundo Corte</a></h2></span>
+        </nav>
+
+        <div class="" id="main_menu">
+            <h3>Menu de Actividades del Segundo Corte</h3>
+            
+            <div class="" id="btn-container">
+                <button id="bloc">Bloc de Notas</button>
+                <button id="pozos">Pozos Petroleros</button>
+                <button id="">Actividad 3</button>
+            </div>
+        </div>
+
+        <div id="footer">
+            <p class="footer-text">2022 Germán Matheus, Derechos y Zurdos Reservados</p>
+        </div>
+
+        <script>
+            var bloc = document.getElementById('bloc')
+            var pozos = document.getElementById('pozos')
+
+            bloc.onclick =  function(){
+                location.replace('bloc.html')
+            }
+            pozos.onclick = function(){
+                location.replace('pozos.html')
+            }
+        </script>
+    </body>
+</html>
